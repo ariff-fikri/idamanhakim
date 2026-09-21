@@ -4,10 +4,33 @@
         <!--====== Required meta tags ======-->
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Idaman Hakim Enterprise - Rakan Niaga & Pembekalan Yang Dipercayai di Sepang & Putrajaya, Malaysia. Berdaftar dalam 30 Bidang MOF.">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!--====== Title ======-->
-        <title>{{ config('app.name', 'Idaman Hakim Enterprise') }}</title>
+        <!--====== Title & Description ======-->
+        <title>Idaman Hakim Enterprise | Rakan Niaga & Pembekalan Berdaftar MOF di Sepang &amp; Putrajaya</title>
+        <meta name="description" content="Idaman Hakim Enterprise - rakan niaga & pembekalan yang dipercayai agensi kerajaan, institusi pendidikan dan syarikat korporat di Sepang & Putrajaya. Berdaftar dalam 30 bidang di bawah Kementerian Kewangan (MOF). Hubungi kami untuk sebut harga percuma.">
+        <meta name="keywords" content="pembekal berdaftar MOF, rakan niaga kerajaan Sepang, syarikat pembekalan Putrajaya, kontraktor pembekalan MOF Selangor, pemasangan langsir korporat, katering dan pengurusan acara Sepang">
+        <meta name="author" content="Idaman Hakim Enterprise">
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+        <meta name="theme-color" content="#1A2744">
+        <meta name="geo.region" content="MY-16">
+        <meta name="geo.placename" content="Putrajaya">
+        <meta name="geo.position" content="2.9264;101.6964">
+        <meta name="ICBM" content="2.9264, 101.6964">
+        <link rel="canonical" href="{{ url()->current() }}">
+        <!--====== Open Graph / Facebook ======-->
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Idaman Hakim Enterprise">
+        <meta property="og:locale" content="ms_MY">
+        <meta property="og:title" content="Idaman Hakim Enterprise | Rakan Niaga & Pembekalan Berdaftar MOF di Sepang & Putrajaya">
+        <meta property="og:description" content="Rakan niaga & pembekalan yang dipercayai agensi kerajaan, institusi pendidikan dan syarikat korporat. Berdaftar dalam 30 bidang MOF, beroperasi di Sepang & Putrajaya, Malaysia.">
+        <meta property="og:image" content="{{ asset('assets/logo/Logo_Idaman-01.png') }}">
+        <meta property="og:image:alt" content="Logo Idaman Hakim Enterprise">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <!--====== Twitter Card ======-->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Idaman Hakim Enterprise | Rakan Niaga & Pembekalan Berdaftar MOF">
+        <meta name="twitter:description" content="Rakan niaga & pembekalan yang dipercayai agensi kerajaan, institusi pendidikan dan syarikat korporat di Sepang & Putrajaya. Berdaftar dalam 30 bidang MOF.">
+        <meta name="twitter:image" content="{{ asset('assets/logo/Logo_Idaman-01.png') }}">
         <!--====== Favicon Icon ======-->
         <link rel="shortcut icon" href="{{ asset('assets/logo/Logo_Idaman-01.png') }}" type="image/png">
         <!--====== Google Fonts ======-->
@@ -213,6 +236,73 @@
             .gallery-overlay i { color: var(--secondary-color); font-size: 22px; }
             .gallery-toggle-wrap { margin-top: 40px; }
         </style>
+        <!--====== Structured Data (JSON-LD) ======-->
+        @php
+            $orgId = url('/').'/#organization';
+            $jsonLd = [
+                '@context' => 'https://schema.org',
+                '@graph' => [
+                    [
+                        '@type' => ['GeneralContractor', 'LocalBusiness'],
+                        '@id' => $orgId,
+                        'name' => 'Idaman Hakim Enterprise',
+                        'legalName' => 'Idaman Hakim Enterprise (002846778-U / 201803217854)',
+                        'taxID' => '201803217854',
+                        'url' => url('/'),
+                        'logo' => asset('assets/logo/Logo_Idaman-01.png'),
+                        'image' => asset('assets/logo/Logo_Idaman-01.png'),
+                        'email' => 'idamanhakim.my@gmail.com',
+                        'telephone' => '+60193127345',
+                        'description' => 'Rakan niaga & pembekalan yang dipercayai agensi kerajaan, institusi pendidikan dan syarikat korporat. Berdaftar dalam 30 bidang di bawah Kementerian Kewangan Malaysia (MOF).',
+                        'priceRange' => 'RM',
+                        'currenciesAccepted' => 'MYR',
+                        'address' => [
+                            '@type' => 'PostalAddress',
+                            'streetAddress' => '1A, Jalan Diplomatik 2, Presint 15',
+                            'postalCode' => '62050',
+                            'addressLocality' => 'Putrajaya',
+                            'addressRegion' => 'Wilayah Persekutuan Putrajaya',
+                            'addressCountry' => 'MY',
+                        ],
+                        'areaServed' => [
+                            ['@type' => 'City', 'name' => 'Sepang'],
+                            ['@type' => 'City', 'name' => 'Putrajaya'],
+                        ],
+                        'openingHoursSpecification' => [
+                            [
+                                '@type' => 'OpeningHoursSpecification',
+                                'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                'opens' => '08:30',
+                                'closes' => '22:00',
+                            ],
+                        ],
+                        'sameAs' => [
+                            'https://www.facebook.com/moriproduction/',
+                        ],
+                        'hasOfferCatalog' => [
+                            '@type' => 'OfferCatalog',
+                            'name' => 'Perkhidmatan Idaman Hakim Enterprise',
+                            'itemListElement' => [
+                                ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Pembekalan Agensi Kerajaan & Korporat']],
+                                ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Fabrikasi & Pemasangan Papan Tanda']],
+                                ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Pemasangan Langsir & Kabinet']],
+                                ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Katering & Pengurusan Acara Majlis']],
+                                ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Penghantaran & Pembekalan Produk']],
+                            ],
+                        ],
+                    ],
+                    [
+                        '@type' => 'WebSite',
+                        '@id' => url('/').'/#website',
+                        'url' => url('/'),
+                        'name' => 'Idaman Hakim Enterprise',
+                        'inLanguage' => 'ms-MY',
+                        'publisher' => ['@id' => $orgId],
+                    ],
+                ],
+            ];
+        @endphp
+        <script type="application/ld+json">{!! json_encode($jsonLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
     </head>
     <body>
         <!--====== Start Preloader ======-->
@@ -731,6 +821,7 @@
                                                 <a href="#"><img src="{{ asset('assets/logo/Logo_Idaman-01.png') }}" alt="Idaman Hakim Enterprise"></a>
                                             </div>
                                             <p class="mb-0">Idaman Hakim Enterprise merupakan sebuah entiti perniagaan yang berdaftar dalam 30 bidang di bawah Kementerian Kewangan (MOF), beroperasi di Sepang dan Putrajaya, Malaysia.</p>
+                                            <p class="mb-0 mt-2">No. Pendaftaran Perniagaan: 002846778-U / 201803217854</p>
                                         </div>
                                     </div>
                                 </div>
@@ -750,7 +841,7 @@
                                     <div class="footer-widget footer-contact-info-widget">
                                         <h4 class="widget-title">Maklumat Perhubungan</h4>
                                         <ul class="gov-footer-list">
-                                            <li>Sepang &amp; Putrajaya, Malaysia</li>
+                                            <li>1A, Jalan Diplomatik 2, Presint 15, 62050 Putrajaya</li>
                                             <li><a href="https://wa.me/60193127345" target="_blank" rel="noopener">019-312 7345</a></li>
                                             <li><a href="mailto:idamanhakim.my@gmail.com">idamanhakim.my@gmail.com</a></li>
                                         </ul>

@@ -1,0 +1,15 @@
+/.claude
+/.cursor
+/.idea
+/.vscode
+/tests
+/database/factories
+/database/seeders
+/storage/logs/*
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# The Laravel front controller is inlined into api/index.php on Vercel.
+# Excluding it prevents Vercel from serving it as a raw file download.
+/public/index.php
