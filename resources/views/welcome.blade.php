@@ -27,8 +27,32 @@
         <!--====== Default css ======-->
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <style>
+            :root {
+                --primary-color: #C9A24B;
+                --secondary-color: #C9A24B;
+                --primary-black-color: #1A2744;
+                --heading-color: #1A2744;
+            }
             .brand-logo img { height: 60px; width: auto; }
             .footer-logo img { height: 60px; width: auto; }
+            .preloader .loading, .preloader .loading-wrapper { width: 140px; height: 140px; }
+            .preloader .loading-wrapper #loading-icon img { width: 90px; }
+            .bizzen-counter_one:after {
+                background: linear-gradient(270deg, rgba(26,39,68,0.6) 0%, var(--primary-black-color) 90.05%) !important;
+            }
+            .navy-texture-bg {
+                background-color: var(--primary-black-color);
+                position: relative;
+            }
+            .navy-texture-img {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background-image: url({{ asset('assets/images/home-one/hero/hero-bg.jpg') }});
+                background-size: cover;
+                background-position: center;
+                filter: hue-rotate(41deg);
+                z-index: -2;
+            }
             .mof-card {
                 background: linear-gradient(160deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
                 border: 1px solid rgba(255,255,255,0.1);
@@ -72,6 +96,122 @@
             .bizzen-testimonial-item.style-one .author-thumb img { width: 60px; height: 60px; object-fit: cover; border-radius: 50%; }
             .bizzen-blog-post-item.style-one .post-thumbnail img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
             [data-aos] { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+            .gov-footer { background-color: var(--primary-black-color); }
+            .gov-footer .footer-widget-wrapper { padding: 60px 0 40px; }
+            .gov-footer .footer-logo img { height: 55px; width: auto; }
+            .gov-footer .footer-about-widget p { color: rgba(255,255,255,0.75); font-size: 14px; line-height: 1.7; }
+            .gov-footer .widget-title { color: #fff; font-size: 16px; font-weight: 700; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.5px; }
+            .gov-footer-list { list-style: none; margin: 0; padding: 0; }
+            .gov-footer-list li { margin-bottom: 12px; color: rgba(255,255,255,0.75); font-size: 14px; }
+            .gov-footer-list li a { color: rgba(255,255,255,0.75); text-decoration: none; }
+            .gov-footer-list li a:hover { color: var(--secondary-color); }
+            .gov-footer .copyright-area { border-top: 1px solid rgba(255,255,255,0.12); padding: 20px 0; }
+            .gov-footer .copyright-text p { color: rgba(255,255,255,0.6); font-size: 13px; margin: 0; }
+            .gov-footer .copyright-link a { color: rgba(255,255,255,0.6); font-size: 13px; margin-left: 20px; text-decoration: none; }
+            .gov-footer .copyright-link a:hover { color: var(--secondary-color); }
+            @media (max-width: 767.98px) {
+                .gov-footer .copyright-link a { margin: 0 10px; }
+            }
+            .sub-title:after { display: none; }
+            .logo-placeholder {
+                width: 100%;
+                aspect-ratio: 1/1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                background: #F6F6F6;
+                border: 2px dashed #D8DDE1;
+                border-radius: 8px;
+                color: #A6ACB4;
+            }
+            .logo-placeholder i { font-size: 28px; }
+            .logo-placeholder span { font-size: 13px; font-weight: 500; }
+            .entity-logo-marquee {
+                overflow: hidden;
+                position: relative;
+                -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+                mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+            }
+            .entity-logo-track {
+                display: flex;
+                align-items: center;
+                width: max-content;
+                gap: 70px;
+                animation: entity-logo-scroll 30s linear infinite;
+            }
+            .entity-logo-marquee:hover .entity-logo-track { animation-play-state: paused; }
+            .entity-logo-box {
+                flex: 0 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                filter: grayscale(100%);
+                opacity: 0.65;
+                transition: filter 0.3s ease, opacity 0.3s ease;
+            }
+            .entity-logo-box:hover {
+                filter: grayscale(0%);
+                opacity: 1;
+            }
+            .entity-logo-box img {
+                height: 70px;
+                width: auto;
+                object-fit: contain;
+            }
+            @keyframes entity-logo-scroll {
+                from { transform: translateX(0); }
+                to { transform: translateX(-50%); }
+            }
+            @media (max-width: 767.98px) {
+                .entity-logo-track { gap: 45px; }
+                .entity-logo-box img { height: 50px; }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .entity-logo-track { animation: none; }
+            }
+            .work-gallery {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                align-items: flex-start;
+                gap: 14px;
+            }
+            .work-gallery .gallery-col {
+                flex: 1 1 0;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                min-width: 0;
+            }
+            .gallery-item {
+                display: block;
+                position: relative;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.4s ease;
+            }
+            .gallery-item:hover img { transform: scale(1.08); }
+            .gallery-overlay {
+                position: absolute;
+                inset: 0;
+                background: rgba(26,39,68,0.55);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            .gallery-item:hover .gallery-overlay { opacity: 1; }
+            .gallery-overlay i { color: var(--secondary-color); font-size: 22px; }
+            .gallery-toggle-wrap { margin-top: 40px; }
         </style>
     </head>
     <body>
@@ -79,7 +219,7 @@
         <div class="preloader">
             <div class="loading-wrapper">
                 <div class="loading"></div>
-                <div id="loading-icon"><img src="{{ asset('assets/images/loader.png') }}" alt="loader"></div>
+                <div id="loading-icon"><img src="{{ asset('assets/logo/Logo_Idaman-01.png') }}" alt="Idaman Hakim Enterprise"></div>
             </div>
         </div><!--====== End Preloader ======-->
         <!--====== Start Overlay ======-->
@@ -110,8 +250,7 @@
                                     <li class="menu-item"><a href="#services">Perkhidmatan</a></li>
                                     <li class="menu-item"><a href="#process">Cara Kami Bekerja</a></li>
                                     <li class="menu-item"><a href="#projects">Projek Kami</a></li>
-                                    <li class="menu-item"><a href="#team">Pasukan Kami</a></li>
-                                    <li class="menu-item"><a href="#contact">Hubungi Kami</a></li>
+                                    <li class="menu-item"><a href="#team">Galeri Kami</a></li>
                                 </ul>
                             </nav>
                             <!--=== Nav Button ===-->
@@ -122,8 +261,7 @@
                             <div class="theme-menu-bottom mt-50 d-block d-xl-none">
                                 <h5>Ikuti Kami</h5>
                                 <ul class="social-link">
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.facebook.com/moriproduction/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="https://wa.me/60193127345" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a></li>
                                 </ul>
                             </div>
@@ -149,7 +287,8 @@
                 <main>
                     <!--======  Start Hero Section  ======-->
                     <section class="bizzen-hero">
-                        <div class="bizzen-hero_one bg_cover" style="background-image: url({{ asset('assets/images/home-one/hero/hero-bg.jpg') }});">
+                        <div class="bizzen-hero_one bg_cover navy-texture-bg">
+                            <div class="navy-texture-img"></div>
                             <div class="hero-bg-shape"></div>
                             <div class="container-fluid">
                                 <div class="row">
@@ -273,7 +412,8 @@
                         </div>
                     </section><!--======  End About Section  ======-->
                     <!--======  Start Achievement Section  ======-->
-                    <section class="bizzen-counter_one bg_cover pt-115 pb-80" style="background-color: var(--primary-black-color, #063232);">
+                    <section class="bizzen-counter_one bg_cover navy-texture-bg pt-115 pb-80">
+                        <div class="navy-texture-img"></div>
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-7">
@@ -437,154 +577,84 @@
                             </div>
                         </div>
                     </section><!--====== End Project Section ======-->
-                    <!--====== Start Team Section ======-->
-                    <section id="team" class="bizzen-team_one pt-115 p-r z-1">
-                        <div class="team-bg bg_cover" style="background-image: url({{ asset('assets/images/home-one/bg/team-bg.jpg') }});"></div>
+                    <!--====== Start Gallery Section ======-->
+                    <section id="team" class="bizzen-team_one pt-115 pb-120 p-r z-1">
+                        <div class="team-bg bg_cover navy-texture-bg"><div class="navy-texture-img"></div></div>
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-xl-7 col-lg-10">
                                     <!--=== Section Title ===-->
                                     <div class="section-title text-center text-white mb-60">
-                                        <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">Pasukan Kami</span>
-                                        <h2 class="text-anm">Pasukan Berpengalaman Bagi Setiap Pelaksanaan Projek</h2>
+                                        <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">Galeri Kami</span>
+                                        <h2 class="text-anm">Sebahagian Hasil Kerja Yang Telah Dilaksanakan</h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-xl-3 col-md-6 col-sm-12">
-                                    <!--=== Bizzen Team Item ===-->
-                                    <div class="bizzen-team-item style-one mb-40" data-aos="fade-up" data-aos-duration="1000">
-                                        <div class="member-image">
-                                            <img src="{{ asset('assets/images/gallery/lori-tangga-gondola.jpeg') }}" alt="pasukan operasi">
-                                            <div class="hover-content">
-                                                <div class="content-wrap">
-                                                    <div class="member-info text-center">
-                                                        <h4 class="title">Pasukan Operasi</h4>
-                                                        <span class="position">Pemasangan & Penghantaran</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 col-sm-12">
-                                    <!--=== Bizzen Team Item ===-->
-                                    <div class="bizzen-team-item style-one mb-40" data-aos="fade-up" data-aos-duration="1200">
-                                        <div class="member-image">
-                                            <img src="{{ asset('assets/images/gallery/susunan-meja-kerusi-majlis-2.jpeg') }}" alt="pasukan acara">
-                                            <div class="hover-content">
-                                                <div class="content-wrap">
-                                                    <div class="member-info text-center">
-                                                        <h4 class="title">Pasukan Acara</h4>
-                                                        <span class="position">Katering & Pengurusan Majlis</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 col-sm-12">
-                                    <!--=== Bizzen Team Item ===-->
-                                    <div class="bizzen-team-item style-one mb-40" data-aos="fade-up" data-aos-duration="1400">
-                                        <div class="member-image">
-                                            <img src="{{ asset('assets/images/gallery/pengecatan-siling-1.jpeg') }}" alt="pasukan renovasi">
-                                            <div class="hover-content">
-                                                <div class="content-wrap">
-                                                    <div class="member-info text-center">
-                                                        <h4 class="title">Pasukan Renovasi</h4>
-                                                        <span class="position">Penyelenggaraan & Pembaikan</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 col-sm-12">
-                                    <!--=== Bizzen Team Item ===-->
-                                    <div class="bizzen-team-item style-one mb-40" data-aos="fade-up" data-aos-duration="1600">
-                                        <div class="member-image">
-                                            <img src="{{ asset('assets/images/gallery/pembekalan-kotak-saunaku.jpeg') }}" alt="pasukan pembekalan">
-                                            <div class="hover-content">
-                                                <div class="content-wrap">
-                                                    <div class="member-info text-center">
-                                                        <h4 class="title">Pasukan Pembekalan</h4>
-                                                        <span class="position">Produk & Logistik</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section><!--====== End Team Section ======-->
-                    <!--====== Start Testimonial Section ======-->
-                    <section class="bizzen-testimonial_one pt-80 pb-110">
-                        <div class="testimonial-map-bg bg_cover" style="background-image: url({{ asset('assets/images/home-one/testimonial/map-bg.png') }});"></div>
                         <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <!--=== Quote Box ===-->
-                                    <div class="quote-box text-center mb-40">
-                                        <img src="{{ asset('assets/images/home-one/testimonial/quote.png') }}" alt="quote">
+                            <div class="work-gallery" id="workGallery" data-aos="fade-up" data-aos-duration="1000"></div>
+                            <template id="workGalleryData">
+                                @php
+                                    $galleryAspectRatios = ['1/1', '3/4', '4/3', '1/1', '3/4'];
+                                    $galleryImages = [
+                                        'langsir-krim-siap.jpeg' => 'Langsir siap dipasang',
+                                        'langsir-teal-siap.jpeg' => 'Langsir siap dipasang',
+                                        'langsir-kuning-siap.jpeg' => 'Langsir siap dipasang',
+                                        'langsir-bilik-kondominium.jpeg' => 'Langsir bilik kondominium',
+                                        'langsir-bilik-mesyuarat-kuning-1.jpeg' => 'Langsir bilik mesyuarat',
+                                        'langsir-bilik-mesyuarat-kuning-2.jpeg' => 'Langsir bilik mesyuarat',
+                                        'langsir-pemasangan-oren.jpeg' => 'Pemasangan langsir',
+                                        'langsir-putih-pemasangan.jpeg' => 'Pemasangan langsir',
+                                        'langsir-ungu-pemasangan-1.jpeg' => 'Pemasangan langsir',
+                                        'langsir-ungu-pemasangan-2.jpeg' => 'Pemasangan langsir',
+                                        'kabinet-dapur.jpeg' => 'Kabinet dapur',
+                                        'kain-skirting-meja-majlis.jpeg' => 'Skirting meja majlis',
+                                        'persediaan-meja-majlis.jpeg' => 'Persediaan meja majlis',
+                                        'susunan-meja-kerusi-majlis-1.jpeg' => 'Susunan meja & kerusi majlis',
+                                        'susunan-meja-kerusi-majlis-2.jpeg' => 'Susunan meja & kerusi majlis',
+                                        'set-pinggan-mangkuk-katering.jpeg' => 'Set pinggan mangkuk katering',
+                                        'pembekalan-kotak-produk-1.jpeg' => 'Pembekalan produk',
+                                        'pembekalan-kotak-saunaku.jpeg' => 'Pembekalan produk',
+                                        'pembekalan-minyak-herba.jpeg' => 'Pembekalan produk herba',
+                                        'pembekalan-produk-campuran.jpeg' => 'Pembekalan produk',
+                                        'pembekalan-produk-herba.jpeg' => 'Pembekalan produk herba',
+                                        'pembekalan-air-botol-kerusi-lipat.jpeg' => 'Pembekalan air & kerusi lipat',
+                                        'penghantaran-tilam-upm.jpeg' => 'Penghantaran tilam ke UPM',
+                                        'penghantaran-tilam-lori-1.jpeg' => 'Penghantaran tilam',
+                                        'penghantaran-tilam-lori-2.jpeg' => 'Penghantaran tilam',
+                                        'penghantaran-tilam-pejabat.jpeg' => 'Penghantaran tilam',
+                                        'penghantaran-tilam-tangga.jpeg' => 'Penghantaran tilam',
+                                        'papan-tanda-pelita-cafe-fabrikasi.jpeg' => 'Fabrikasi papan tanda',
+                                        'papan-tanda-pelita-cafe-siap.jpeg' => 'Papan tanda siap dipasang',
+                                        'papan-tanda-pemasangan.jpeg' => 'Pemasangan papan tanda',
+                                        'lori-tangga-gondola.jpeg' => 'Lori tangga gondola',
+                                        'pembaikan-bumbung.jpeg' => 'Pembaikan bumbung',
+                                        'pengecatan-siling-1.jpeg' => 'Pengecatan siling',
+                                        'pengecatan-siling-2.jpeg' => 'Pengecatan siling',
+                                        'pemasangan-jubin.jpeg' => 'Pemasangan jubin',
+                                        'kerja-paip-renovasi.jpeg' => 'Kerja paip renovasi',
+                                        'siling-kayu-beranda.jpeg' => 'Siling kayu beranda',
+                                        'beranda-siling-kayu-kipas.jpeg' => 'Siling kayu beranda',
+                                    ];
+                                @endphp
+                                @foreach ($galleryImages as $file => $caption)
+                                    <div class="gallery-col-item" data-more="{{ $loop->index >= 12 ? '1' : '0' }}">
+                                        <a href="{{ asset('assets/images/gallery/' . $file) }}" class="gallery-item" data-caption="{{ $caption }}" style="aspect-ratio: {{ $galleryAspectRatios[$loop->index % count($galleryAspectRatios)] }};">
+                                            <img src="{{ asset('assets/images/gallery/' . $file) }}" alt="{{ $caption }}" loading="lazy">
+                                            <span class="gallery-overlay"><i class="fas fa-search-plus"></i></span>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </template>
+                            @if (count($galleryImages) > 12)
+                                <div class="row justify-content-center gallery-toggle-wrap">
+                                    <div class="col-auto">
+                                        <button type="button" id="galleryToggleBtn" class="theme-btn style-one">Lihat Lebih Banyak<i class="far fa-arrow-down"></i></button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="col-lg-10">
-                                    <!--=== Testimonial Slider ===-->
-                                    <div class="testimonial-slider">
-                                        <!--=== Bizzen Testimonial Item ===-->
-                                        <div class="bizzen-testimonial-item style-one">
-                                            <div class="testimonial-content">
-                                                <p>"Pembekalan tilam bagi kolej kediaman kami telah diuruskan dengan cekap dan tepat pada masa oleh Idaman Hakim Enterprise. Keseluruhan proses daripada pesanan sehingga penghantaran berjalan lancar." </p>
-                                                <div class="ratings">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="author-thumb-item">
-                                                    <div class="author-thumb">
-                                                        <img src="{{ asset('assets/images/gallery/penghantaran-tilam-upm.jpeg') }}" alt="testimoni pelanggan">
-                                                    </div>
-                                                    <div class="author-info">
-                                                        <h5>Pelanggan Institusi</h5>
-                                                        <span class="position">Kolej Kediaman, UPM</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--=== Bizzen Testimonial Item ===-->
-                                        <div class="bizzen-testimonial-item style-one">
-                                            <div class="testimonial-content">
-                                                <p>"Papan tanda kafe kami telah siap difabrikasi dan dipasang dengan kualiti yang kemas. Perkhidmatan yang diberikan adalah profesional sepanjang tempoh pelaksanaan projek." </p>
-                                                <div class="ratings">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="author-thumb-item">
-                                                    <div class="author-thumb">
-                                                        <img src="{{ asset('assets/images/gallery/papan-tanda-pelita-cafe-siap.jpeg') }}" alt="testimoni pelanggan">
-                                                    </div>
-                                                    <div class="author-info">
-                                                        <h5>Pemilik Perniagaan</h5>
-                                                        <span class="position">Pelita Café</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                         </div>
-                    </section><!--====== End Testimonial Section ======-->
+                    </section><!--====== End Gallery Section ======-->
                     <!--====== Start Contact Section ======-->
                     <section id="contact" class="bizzen-contact_one">
                         <!-- Contact Wrapper -->
@@ -604,81 +674,18 @@
                                     <p class="mb-50" data-aos="fade-up" data-aos-duration="1200">Sebarang pertanyaan mengenai projek atau perkhidmatan kami boleh dikemukakan melalui WhatsApp atau e-mel. Pihak kami akan memberikan maklum balas dalam tempoh masa yang munasabah.</p>
                                     <div class="row" data-aos="fade-up" data-aos-duration="1400">
                                         <div class="col-lg-6 mb-30">
-                                            <a href="https://wa.me/60193127345" target="_blank" rel="noopener" class="theme-btn style-one d-block text-center"><i class="fab fa-whatsapp"></i> WHATSAPP: 019-312 7345</a>
+                                            <a href="https://wa.me/60193127345" target="_blank" rel="noopener" class="theme-btn style-one d-flex align-items-center justify-content-center gap-2 text-center" style="white-space: nowrap;"><i class="fab fa-whatsapp"></i> WHATSAPP: 019-312 7345</a>
                                         </div>
                                         <div class="col-lg-6 mb-30">
-                                            <a href="mailto:idamanhakim.my@gmail.com" class="theme-btn style-one d-block text-center"><i class="far fa-envelope"></i> IDAMANHAKIM.MY@GMAIL.COM</a>
+                                            <a href="mailto:idamanhakim.my@gmail.com" class="theme-btn style-one d-flex align-items-center justify-content-center gap-2 text-center" style="white-space: nowrap;"><i class="far fa-envelope"></i> idamanhakim.my@gmail.com</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section><!--====== End Contact Section ======-->
-                    <!--====== Start Blog Section ======-->
-                    <section class="bizzen-blog-sec pt-110 pb-90">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-5 col-lg-10">
-                                    <!--=== Bizzen Content Box ===-->
-                                    <div class="bizzen-content-box mb-5 mb-xl-0 text-center text-xl-start">
-                                        <div class="section-title">
-                                            <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">AKTIVITI KAMI</span>
-                                            <h2 class="text-anm">Aktiviti Terkini Pihak Kami</h2>
-                                        </div>
-                                        <div class="bizzen-button" data-aos="fade-up" data-aos-duration="1000">
-                                            <a href="https://wa.me/60193127345" target="_blank" rel="noopener" class="theme-btn style-one">HUBUNGI KAMI<i class="far fa-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-7 col-lg-10">
-                                    <!--=== Bizzen Blog List ===-->
-                                    <div class="bizzen-blog-list">
-                                        <!--=== Bizzen Blog Item ===-->
-                                        <div class="bizzen-blog-post-item style-one mb-30" data-aos="fade-up" data-aos-duration="1000">
-                                            <div class="post-thumbnail">
-                                                <img src="{{ asset('assets/images/gallery/pemasangan-jubin.jpeg') }}" alt="pemasangan jubin">
-                                            </div>
-                                            <div class="post-content">
-                                                <div class="post-meta">
-                                                    <span><a href="#">Renovasi</a></span>
-                                                </div>
-                                                <h4 class="title">Pemasangan Jubin Beranda Rumah</h4>
-                                                <p>Kerja pemasangan jubin lantai beranda telah dilaksanakan dengan kemas dan mengikut piawaian kerja yang ditetapkan.</p>
-                                            </div>
-                                        </div>
-                                        <!--=== Bizzen Blog Item ===-->
-                                        <div class="bizzen-blog-post-item style-one mb-30" data-aos="fade-up" data-aos-duration="1200">
-                                            <div class="post-thumbnail">
-                                                <img src="{{ asset('assets/images/gallery/pembaikan-bumbung.jpeg') }}" alt="pembaikan bumbung">
-                                            </div>
-                                            <div class="post-content">
-                                                <div class="post-meta">
-                                                    <span><a href="#">Penyelenggaraan</a></span>
-                                                </div>
-                                                <h4 class="title">Pembaikan & Penyelenggaraan Bumbung</h4>
-                                                <p>Perkhidmatan pembaikan bumbung dilaksanakan menggunakan lori gondola bagi memastikan keselamatan semasa kerja ketinggian.</p>
-                                            </div>
-                                        </div>
-                                        <!--=== Bizzen Blog Item ===-->
-                                        <div class="bizzen-blog-post-item style-one mb-30" data-aos="fade-up" data-aos-duration="1400">
-                                            <div class="post-thumbnail">
-                                                <img src="{{ asset('assets/images/gallery/langsir-ungu-pemasangan-1.jpeg') }}" alt="pemasangan langsir">
-                                            </div>
-                                            <div class="post-content">
-                                                <div class="post-meta">
-                                                    <span><a href="#">Pembekalan</a></span>
-                                                </div>
-                                                <h4 class="title">Pemasangan Langsir Kediaman & Pejabat</h4>
-                                                <p>Pembekalan dan pemasangan langsir dilaksanakan mengikut spesifikasi yang dikehendaki oleh pelanggan.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section><!--====== End Blog Section ======-->
                     <!--====== Start Company Section ======-->
-                    <section class="bizzen-company-sec pb-120">
+                    <section class="bizzen-company-sec pt-120 pb-120">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -689,94 +696,73 @@
                             </div>
                         </div>
                         <div class="container">
-                            <div class="row g-3" data-aos="fade-up" data-aos-duration="1200">
-                                <div class="col-lg-3 col-md-4 col-6">
-                                    <img src="{{ asset('assets/images/gallery/penghantaran-tilam-upm.jpeg') }}" alt="UPM" class="w-100 rounded" style="aspect-ratio: 1/1; object-fit: cover;">
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-6">
-                                    <img src="{{ asset('assets/images/gallery/papan-tanda-pelita-cafe-siap.jpeg') }}" alt="Pelita Café" class="w-100 rounded" style="aspect-ratio: 1/1; object-fit: cover;">
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-6">
-                                    <img src="{{ asset('assets/images/gallery/susunan-meja-kerusi-majlis-2.jpeg') }}" alt="majlis korporat" class="w-100 rounded" style="aspect-ratio: 1/1; object-fit: cover;">
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-6">
-                                    <img src="{{ asset('assets/images/gallery/langsir-bilik-mesyuarat-kuning-1.jpeg') }}" alt="langsir pejabat" class="w-100 rounded" style="aspect-ratio: 1/1; object-fit: cover;">
+                            @php
+                                $trustedEntities = [
+                                    'institut-sosial-malaysia.png' => 'Institut Sosial Malaysia',
+                                    'kemas-selangor.png' => 'KEMAS Selangor',
+                                    'perhilitan.png' => 'PERHILITAN',
+                                    'jkr.png' => 'JKR',
+                                    'veterinar-sepang.png' => 'Jabatan Veterinar Sepang',
+                                    'pejabat-tanah-sepang.png' => 'Pejabat Tanah Daerah Sepang',
+                                    'hospital-serdang.png' => 'Hospital Serdang',
+                                ];
+                            @endphp
+                            <div class="entity-logo-marquee" data-aos="fade-up" data-aos-duration="1200">
+                                <div class="entity-logo-track">
+                                    @for ($i = 0; $i < 2; $i++)
+                                        @foreach ($trustedEntities as $file => $name)
+                                            <div class="entity-logo-box"><img src="{{ asset('assets/logo/' . $file) }}" alt="{{ $name }}" loading="lazy"></div>
+                                        @endforeach
+                                    @endfor
                                 </div>
                             </div>
                         </div>
                     </section><!--====== End Company Section ======-->
                 </main>
                 <!--======  Start Footer  ======-->
-                <footer class="main-footer">
-                    <div class="footer-shape"><img src="{{ asset('assets/images/footer/footer-shape.png') }}" alt="footer shape"></div>
-                    <!--=== Footer Widget Wrapper ===-->
+                <footer class="main-footer gov-footer">
                     <div class="footer-widget-wrapper">
                         <div class="container">
-                            <div class="row">
+                            <div class="row gy-4">
                                 <div class="col-lg-4">
-                                    <!--=== Footer Widget ===-->
-                                    <div class="footer-widget footer-about-widget pt-100" data-aos="fade-up" data-aos-duration="800">
+                                    <div class="footer-widget footer-about-widget">
                                         <div class="widget-content">
                                             <div class="footer-logo mb-20">
                                                 <a href="#"><img src="{{ asset('assets/logo/Logo_Idaman-01.png') }}" alt="Idaman Hakim Enterprise"></a>
                                             </div>
-                                            <p class="mb-20">Idaman Hakim Enterprise - Rakan Niaga & Pembekalan Yang Dipercayai. Berdaftar dalam 30 bidang MOF.</p>
+                                            <p class="mb-0">Idaman Hakim Enterprise merupakan sebuah entiti perniagaan yang berdaftar dalam 30 bidang di bawah Kementerian Kewangan (MOF), beroperasi di Sepang dan Putrajaya, Malaysia.</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-8">
-                                    <!--=== Footer Widget Wrap ===-->
-                                    <div class="footer-widget-inner">
-                                        <!--=== Footer Top ===-->
-                                        <div class="footer-top" data-aos="fade-up" data-aos-duration="1000">
-                                            <div class="big-text">Berminat Untuk Berurusan Niaga?</div>
-                                        </div>
-                                        <div class="footer-widget-area">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <!--=== Footer Widget ===-->
-                                                    <div class="footer-widget footer-contact-info-widget mb-40" data-aos="fade-up" data-aos-duration="1200">
-                                                        <div class="widget-content">
-                                                            <h6>Lokasi Operasi</h6>
-                                                            <ul>
-                                                                <li>
-                                                                    Sepang & Putrajaya, Malaysia
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <!--=== Footer Widget ===-->
-                                                    <div class="footer-widget footer-contact-info-widget mb-40" data-aos="fade-up" data-aos-duration="1400">
-                                                        <div class="widget-content">
-                                                            <h6>Perhubungan</h6>
-                                                            <ul>
-                                                                <li>
-                                                                    <a href="https://wa.me/60193127345" target="_blank" rel="noopener">019-312 7345</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="mailto:idamanhakim.my@gmail.com">idamanhakim.my@gmail.com</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <!--=== Footer Widget ===-->
-                                                    <div class="footer-widget footer-social-widget mb-40" data-aos="fade-up" data-aos-duration="1600">
-                                                        <h4 class="widget-title">Ikuti Kami:</h4>
-                                                        <div class="widget-content">
-                                                            <div class="social-box">
-                                                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                                                <a href="https://wa.me/60193127345" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="col-lg-3 col-md-4">
+                                    <div class="footer-widget footer-nav-widget">
+                                        <h4 class="widget-title">Pautan Pantas</h4>
+                                        <ul class="gov-footer-list">
+                                            <li><a href="#about">Mengenai Kami</a></li>
+                                            <li><a href="#services">Perkhidmatan</a></li>
+                                            <li><a href="#process">Cara Kami Bekerja</a></li>
+                                            <li><a href="#projects">Projek Kami</a></li>
+                                            <li><a href="#team">Galeri Kami</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4">
+                                    <div class="footer-widget footer-contact-info-widget">
+                                        <h4 class="widget-title">Maklumat Perhubungan</h4>
+                                        <ul class="gov-footer-list">
+                                            <li>Sepang &amp; Putrajaya, Malaysia</li>
+                                            <li><a href="https://wa.me/60193127345" target="_blank" rel="noopener">019-312 7345</a></li>
+                                            <li><a href="mailto:idamanhakim.my@gmail.com">idamanhakim.my@gmail.com</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-4">
+                                    <div class="footer-widget footer-social-widget">
+                                        <h4 class="widget-title">Ikuti Kami</h4>
+                                        <ul class="gov-footer-list">
+                                            <li><a href="https://www.facebook.com/moriproduction/" target="_blank" rel="noopener">Facebook</a></li>
+                                            <li><a href="https://wa.me/60193127345" target="_blank" rel="noopener">WhatsApp</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -787,13 +773,11 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <!--=== Copyright Text ===-->
                                     <div class="copyright-text text-md-start text-center">
                                         <p>&copy; {{ date('Y') }} Idaman Hakim Enterprise. Hak Cipta Terpelihara.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <!--=== Copyright link ===-->
                                     <div class="copyright-link text-md-end text-center">
                                         <a href="#about">Mengenai Kami</a>
                                         <a href="#contact">Hubungi Kami</a>
@@ -845,6 +829,80 @@
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
                 history.pushState(null, '', id);
+            });
+        </script>
+        <!--====== Work Gallery Masonry + Lightbox ======-->
+        <script>
+            jQuery(function ($) {
+                var $gallery = $('#workGallery');
+                var $template = $('#workGalleryData');
+                var showingMore = false;
+
+                function columnCount() {
+                    var w = window.innerWidth;
+                    if (w < 576) return 2;
+                    if (w < 992) return 3;
+                    return 4;
+                }
+
+                function renderMasonry() {
+                    if (!$gallery.length || !$template.length) return;
+                    var $items = $template.contents().filter(function () {
+                        return this.nodeType === 1 && $(this).hasClass('gallery-col-item');
+                    });
+                    if (!showingMore) {
+                        $items = $items.filter(function () {
+                            return $(this).attr('data-more') !== '1';
+                        });
+                    }
+
+                    var cols = columnCount();
+                    var $colEls = [];
+                    $gallery.empty();
+                    for (var c = 0; c < cols; c++) {
+                        var $col = $('<div class="gallery-col"></div>');
+                        $gallery.append($col);
+                        $colEls.push({ el: $col, height: 0 });
+                    }
+
+                    $items.each(function () {
+                        var $clone = $(this).clone();
+                        var ratio = 1;
+                        var m = /aspect-ratio:\s*([\d.]+)\s*\/\s*([\d.]+)/.exec($clone.find('.gallery-item').attr('style') || '');
+                        if (m) { ratio = parseFloat(m[2]) / parseFloat(m[1]); }
+                        var shortest = $colEls.reduce(function (a, b) { return b.height < a.height ? b : a; });
+                        shortest.el.append($clone);
+                        shortest.height += ratio;
+                    });
+
+                    if ($.fn.magnificPopup) {
+                        $gallery.magnificPopup({
+                            delegate: 'a.gallery-item',
+                            type: 'image',
+                            gallery: { enabled: true },
+                            image: {
+                                titleSrc: function (item) {
+                                    return item.el.attr('data-caption');
+                                }
+                            },
+                            mainClass: 'mfp-fade'
+                        });
+                    }
+                }
+
+                renderMasonry();
+
+                var resizeTimer;
+                $(window).on('resize', function () {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(renderMasonry, 200);
+                });
+
+                $('#galleryToggleBtn').on('click', function () {
+                    showingMore = true;
+                    renderMasonry();
+                    $(this).parent().parent().fadeOut(200);
+                });
             });
         </script>
     </body>
